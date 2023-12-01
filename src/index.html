@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title><%= htmlWebpackPlugin.options.title %></title>
+	</head>
+	<body>
+		<div class="settings-container">
+			<div class="form-container">
+				<form class="game-params-form">
+					<label for="sizeInput">Maze size (min 5 - max 20):</label>
+					<input
+						class="sizeInput"
+						max="20"
+						min="5"
+						name="sizeInput"
+						required
+						type="number"
+					/>
+					<br />
+
+					<label for="entrance-position">Entrance position:</label>
+					<select
+						class="entrance-position-select"
+						name="entrance-position"
+						required
+					>
+						<option value="top" selected>Top</option>
+						<option value="bottom">Bottom</option>
+						<option value="left">Left</option>
+						<option value="right">Right</option>
+					</select>
+					<br />
+
+					<label for="exit-position">Exit position:</label>
+					<select
+						name="exit-position"
+						class="exit-position-select"
+						required
+					>
+						<option value="top">Top</option>
+						<option value="bottom" selected>Bottom</option>
+						<option value="left">Left</option>
+						<option value="right">Right</option>
+					</select>
+					<br />
+
+					<button type="submit">Generate</button>
+				</form>
+			</div>
+
+			<div class="error-container">
+				<div class="error_msg"></div>
+			</div>
+		</div>
+	</body>
+</html>
