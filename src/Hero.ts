@@ -12,11 +12,13 @@ export class Hero extends Observable<Events> {
 	private heroSize: number
 	private offset: number
 
-	private keyPressHandler: () => void
+	private readonly keyPressHandler: () => void
 
-	constructor(private entrance: Cell) {
+	constructor(private readonly entrance: Cell) {
 		super()
-		this.state = new HeroState({ x: entrance.i, y: entrance.j })
+
+		const { i, j } = entrance
+		this.state = new HeroState({ x: i, y: j })
 
 		this.placeHeroAtStart()
 		this.calculateHeroDimensions()

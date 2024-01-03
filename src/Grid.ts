@@ -26,12 +26,21 @@ export class Grid extends Observable<Events> implements IGridBase {
 	}
 	private readonly borderStyles = (
 		currentStepStyle: CSSStyleDeclaration
-	): Record<Positions, string> => ({
-		[Positions.TOP]: currentStepStyle.borderTopStyle,
-		[Positions.BOTTOM]: currentStepStyle.borderBottomStyle,
-		[Positions.LEFT]: currentStepStyle.borderLeftStyle,
-		[Positions.RIGHT]: currentStepStyle.borderRightStyle,
-	})
+	): Record<Positions, string> => {
+		const {
+			borderTopStyle,
+			borderBottomStyle,
+			borderLeftStyle,
+			borderRightStyle,
+		} = currentStepStyle
+
+		return {
+			[Positions.TOP]: borderTopStyle,
+			[Positions.BOTTOM]: borderBottomStyle,
+			[Positions.LEFT]: borderLeftStyle,
+			[Positions.RIGHT]: borderRightStyle,
+		}
+	}
 
 	private readonly max: number = this.size - 2
 	private readonly min: number = 1
@@ -73,25 +82,19 @@ export class Grid extends Observable<Events> implements IGridBase {
 	}
 
 	public getCellRandomNeighbor(cell: Cell): Cell {
-		const top: Cell =
-			cell.i - 1 > 0 ? this.grid[cell.i - 1][cell.j] : undefined
+		const { i, j } = cell || {}
 
-		const right: Cell =
-			cell.j + 1 <= this.size - 1
-				? this.grid[cell.i][cell.j + 1]
-				: undefined
+		const top: Cell = i - 1 > 0 && this.grid[i - 1][j]
 
-		const bottom: Cell =
-			cell.i + 1 <= this.size - 1
-				? this.grid[cell.i + 1][cell.j]
-				: undefined
+		const right: Cell = j + 1 <= this.size - 1 && this.grid[i][j + 1]
 
-		const left: Cell =
-			cell.j - 1 > 0 ? this.grid[cell.i][cell.j - 1] : undefined
+		const bottom: Cell = i + 1 <= this.size - 1 && this.grid[i + 1][j]
+
+		const left: Cell = j - 1 > 0 && this.grid[i][j - 1]
 
 		const neighbors: Cell[] = [top, right, bottom, left].filter(
 			(neighbour: Cell) =>
-				neighbour !== undefined &&
+				neighbour &&
 				!neighbour.visited &&
 				!neighbour.element.className.match(/wall/)
 		)
@@ -230,7 +233,7 @@ export class Grid extends Observable<Events> implements IGridBase {
 		pos: Positions
 		classes: string[]
 	}): Cell {
-		const { max, min, pos, classes } = params
+		const { max, min, pos, classes } = params || {}
 
 		const gridSection: Cell[] = this.outerGrid[pos]
 
