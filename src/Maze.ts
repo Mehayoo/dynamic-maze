@@ -16,7 +16,7 @@ export class Maze {
 
 	private drawMaze(): void {
 		this.current.visit()
-		let next: Cell = this.grid.getCellRandomNeighbor(this.current)
+		const next: Cell = this.grid.getCellRandomNeighbor(this.current)
 		if (next) {
 			next.visit()
 			this.stack.push(this.current)

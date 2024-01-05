@@ -95,17 +95,20 @@ export class Game implements Observer<Events> {
 		const { event, payload = {} } = observerEvent
 
 		switch (event) {
-			case Events.MOVE_ATTEMPT:
+			case Events.MOVE_ATTEMPT: {
 				this.grid.validateMove(payload as IMoveAttemptPayload)
 				break
-			case Events.MOVE_HERO:
+			}
+			case Events.MOVE_HERO: {
 				const { newPosition } = payload as IMoveAllowedPayload
 				this.hero.updatePosition(newPosition)
 				break
-			case Events.COLLECT_KEY:
+			}
+			case Events.COLLECT_KEY: {
 				this.hero.collectKey()
 				break
-			case Events.VALIDATE_EXIT:
+			}
+			case Events.VALIDATE_EXIT: {
 				this.scoreManager.subtractStep()
 
 				if (this.hero.state.getHasKey()) {
@@ -123,9 +126,11 @@ export class Game implements Observer<Events> {
 					this.uiManager.messageDiv.textContent = Messages.KEY_MISSING
 				}
 				break
-			case Events.GAME_OVER:
+			}
+			case Events.GAME_OVER: {
 				this.hero.reset()
 				break
+			}
 			default:
 				return
 		}
