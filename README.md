@@ -11,6 +11,14 @@ This Maze Game is a dynamic, browser-based project developed using TypeScript. I
 -   **Decoupling**: Strategic separation of concerns allows components to be easily extended or replaced.
 -   **MVC-like Architecture**: While not a classical MVC, the project employs a similar separation of concerns, enhancing maintainability and scalability.
 
-## Note
+## Installation Instructions
 
-This project is designed for educational and reference purposes. It showcases the application of design patterns in a practical context, demonstrating how even a simple game can be architecturally complex and thoughtfully structured. However, it is the intellectual property of Mihaiu Sorin-Ionut. For more information on permissible use, please refer to the LICENSE file in this repository.
+1. Clone the repository to your local machine
+2. Navigate to the project directory and run `npm install` to install all required dependencies.
+3. To start the game, run `npm run dev`.
+
+> [!IMPORTANT]
+>
+> ## Intellectual Property
+>
+> This project is my intellectual property, **_Mihaiu Sorin-Ionut_**, and it is designed for educational and reference purposes. It showcases the application of design patterns in a practical context, demonstrating how even a simple game can be architecturally complex and thoughtfully structured. For more information on permissible use, please refer to the LICENSE file in this repository.

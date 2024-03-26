@@ -17,7 +17,7 @@ export class SubscriptionManager<T> {
 		observer?: Observer<T>
 	): void {
 		if (observer) {
-			// Check if the observer has an unsubscribe method. If not, it add the observer to the observable using observable.addObserver(observer)
+			// Check if the observer has an unsubscribe method. If not, it adds the observer to the observable using observable.addObserver(observer)
 			const unsubscribe: () => Observer<T>[] =
 				!observer.unsubscribe && observable.addObserver(observer)
 
